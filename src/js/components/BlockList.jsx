@@ -3,6 +3,8 @@ import React from "react";
 // app files
 import { range } from "lodash";
 import BlockListItem from "./BlockListItem";
+// styles
+require("@src/styles/block_list");
 
 class BlockList extends React.Component {
 
@@ -17,7 +19,7 @@ class BlockList extends React.Component {
 
   render() {
     return(
-      <div>
+      <div id="block-list-container">
         {this._renderBlockListItems()}
       </div>
     )

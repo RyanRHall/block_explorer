@@ -2,7 +2,7 @@
 import React from "react";
 
 const BlockDifficulty = props => (
-  <div>
+  <div className="metric-container">
     {props.latestBlock.difficulty}
   </div>
 );

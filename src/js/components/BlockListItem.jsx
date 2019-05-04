@@ -2,7 +2,10 @@
 import React from "react";
 // app files
 import { withWeb3Access } from "@src/js/context/web3";
-import { BlockLink, TransactionLink } from "@src/js/hoc/links";
+import { BlockLink, TransactionLink } from "@src/js/helpers/links";
+import { hashShortner } from "@src/js/helpers/viewHelpers";
+// styles
+require("@src/styles/block_list_item");
 
 class BlockListItem extends React.Component {
 
@@ -28,6 +31,7 @@ class BlockListItem extends React.Component {
 
   async _fetchBlockData() {
     const block = await this.props.web3.eth.getBlock(this.props.blockNumber);
+    if(!block) return;// TODO
     this.setState({
       isLoading: false,
       block
@@ -39,7 +43,7 @@ class BlockListItem extends React.Component {
   _renderTransactions() {
     return this.state.block.transactions.map(tx => (
       <TransactionLink key={tx} hash={tx}>
-        {"tx"}
+        <div className="transaction-link-icon" />
       </TransactionLink>
     ));
   }
@@ -53,16 +57,13 @@ class BlockListItem extends React.Component {
   _renderLoaded() {
     const block = this.state.block;
     return (
-      <div>
-        <div>Number:</div>
-        <div><BlockLink number={block.number} /></div>
-        <div>Hash:</div>
-        <div><BlockLink number={block.number}>{block.hash}</BlockLink></div>
-        <div>Nonce:</div>
-        <div>{block.nonce}</div>
-        <div>Number of Transactions:</div>
-        <div>{block.transactions.length}</div>
-        {this._renderTransactions()}
+      <div className="block-list-item">
+        <div>Number:</div>       <div><BlockLink number={block.number}/></div>
+        <div>Hash:</div>         <div><BlockLink number={block.number}>{hashShortner(block.hash)}</BlockLink></div>
+        <div>Nonce:</div>        <div>{block.nonce}</div>
+        <div>Transactions:</div> <div>{block.transactions.length}</div>
+
+        <div>{this._renderTransactions()}</div>
       </div>
     );
   }

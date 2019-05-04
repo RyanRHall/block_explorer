@@ -46,7 +46,9 @@ class BlockHeight extends React.Component {
 
   render() {
     return(
-      `${this.state.age} s`
+      <div className="metric-container">
+        {`Block Age: ${this.state.age} s`}
+      </div>
     )
   }
 }

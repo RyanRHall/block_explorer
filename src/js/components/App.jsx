@@ -12,6 +12,9 @@ import Search from "./Search";
 import Transaction from "./Transaction";
 import Account from "./Account";
 import { withWeb3Access } from "@src/js/context/web3";
+// styles
+require("@src/styles/header");
+require("@src/styles/app");
 
 class App extends React.Component {
 
@@ -68,19 +71,37 @@ class App extends React.Component {
     return <BlockList {...props} latestBlock={this.state.latestBlock} />
   }
 
-  _renderApp() {
+  _renderHeader() {
     return (
-      <Main>
+      <header>
         <Search />
-        <BlockAge latestBlock={this.state.latestBlock}/>
-        <BlockDifficulty latestBlock={this.state.latestBlock}/>
-        <GasPrice latestBlock={this.state.latestBlock}/>
+        <div>
+          <BlockAge latestBlock={this.state.latestBlock}/>
+          <BlockDifficulty latestBlock={this.state.latestBlock}/>
+          <GasPrice latestBlock={this.state.latestBlock}/>
+        </div>
+      </header>
+    );
+  }
+
+  _renderMain() {
+    return(
+      <main>
         <Switch>
           <Route path="/" exact render={this._renderBlockList} />
           <Route path="/blocks/:blockNumber" render={this._renderBlockList} />
           <Route path="/transactions/:txHash" component={Transaction} />
           <Route path="/accounts/:address" component={Account} />
         </Switch>
+      </main>
+    );
+  }
+
+  _renderApp() {
+    return (
+      <Main>
+        {this._renderHeader()}
+        {this._renderMain()}
       </Main>
     );
   }
