@@ -1,50 +1,45 @@
 // libraries
 import React from "react";
+// app files
+import { withWeb3Access } from "@src/context/web3";
 
-class BlockHeight extends React.Component {
+class GasPrice extends React.Component {
 
   /*************** Constructor ***************/
 
   constructor(props) {
     super(props);
     this.state = {
-      age: 0
+      gasPrice: 0
     }
   }
 
   /************ Lifecycle Methods ************/
 
-  async componentDidUpdate(prevProps) {
-    if(prevProps.block.number !== this.props.block.number) {
-      this._stopTicker();
-      await this.setState({ age: 0 });
-      this._startTicker();
-    }
+  componentDidMount() {
+    this._fetchGasPrice();
   }
 
-  componentWillUnmount() {
-    this._stopTicker();
+  async componentDidUpdate(prevProps) {
+    if(prevProps.block.number !== this.props.block.number) {
+      this._fetchGasPrice();
+    }
   }
 
   /************* Private Methods *************/
 
-  _startTicker() {
-    this.intervalID = setInterval(() => {
-      this.setState({ age: this.state.age + 1 });
-    }, 1000);
-  }
-
-  _stopTicker() {
-    clearInterval(this.intervalID);
+  async _fetchGasPrice() {
+    const gasPrice = await this.props.web3.eth.getGasPrice();
+    this.setState({ gasPrice });
   }
 
   /***************** Render ******************/
 
   render() {
     return(
-      `${this.state.age} s`
+      `${this.state.gasPrice} Wei`
     )
   }
 }
 
-export default BlockHeight;
+export default withWeb3Access(GasPrice);
