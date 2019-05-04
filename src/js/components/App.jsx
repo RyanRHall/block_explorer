@@ -13,8 +13,9 @@ import Transaction from "./Transaction";
 import Account from "./Account";
 import { withWeb3Access } from "@src/js/context/web3";
 // styles
-require("@src/styles/header");
 require("@src/styles/app");
+require("@src/styles/header");
+require("@src/styles/main");
 
 class App extends React.Component {
 

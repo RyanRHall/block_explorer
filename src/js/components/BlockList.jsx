@@ -19,8 +19,11 @@ class BlockList extends React.Component {
 
   render() {
     return(
-      <div id="block-list-container">
-        {this._renderBlockListItems()}
+      <div>
+        <h1>Block Explorer</h1>
+        <div id="block-list-container">
+          {this._renderBlockListItems()}
+        </div>
       </div>
     )
   }

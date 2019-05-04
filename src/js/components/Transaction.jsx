@@ -44,17 +44,21 @@ class Transaction extends React.Component {
     const tx = this.state.transaction;
     return(
       <div>
-        <div>Hash:</div>
-        <div>{tx.hash}</div>
-        <div>Block Number:</div>
-        <div>{tx.blockNumber}</div>
-        <div>From:</div>
-        <div>{tx.from}</div>
-        <div>To:</div>
-        <div>{tx.to}</div>
-        <div>Amount:</div>
-        <div>{tx.value} Wei</div>
+        <h1>Transaction Details</h1>
+        <div className="transaction-details-container">
+          <div>Hash:</div>
+          <div>{tx.hash}</div>
+          <div>Block Number:</div>
+          <div>{tx.blockNumber}</div>
+          <div>From:</div>
+          <div>{tx.from}</div>
+          <div>To:</div>
+          <div>{tx.to}</div>
+          <div>Amount:</div>
+          <div>{tx.value} Wei</div>
+        </div>
       </div>
+
     );
   }
 
