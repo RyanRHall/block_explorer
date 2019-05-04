@@ -9,10 +9,10 @@ class BlockList extends React.Component {
   /***************** Render ******************/
 
   _renderBlockListItems() {
-    const start = this.props.latestBlock.number;
+    const start = parseInt(this.props.match.params.blockNumber) || this.props.latestBlock.number;
     return range(start, start - 4, -1).map(blockNumer => (
       <BlockListItem blockNumber={blockNumer} key={blockNumer} />
-    ))
+    ));
   }
 
   render() {

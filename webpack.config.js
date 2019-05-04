@@ -41,12 +41,14 @@ module.exports = {
   },
   output: {
     filename: "bundle.js",
-    path: BUILD_DIR
+    path: BUILD_DIR,
+    publicPath: '/'
   },
   plugins: [ HTMLWebpackPluginConfig ],
   devtool: "source-map",
   devServer: {
     port: 8080,
+    historyApiFallback: true,
     // Send API requests on localhost to API server to get around CORS.
     proxy: {}
   }
