@@ -3,7 +3,7 @@ var HTMLWebpackPlugin = require("html-webpack-plugin");
 
 var SOURCE_DIR = path.resolve(__dirname, "src");
 var TEMPLATE = path.resolve(SOURCE_DIR, "index.html");
-var ENTRYPOINT = path.resolve(SOURCE_DIR, "index.jsx");
+var ENTRYPOINT = path.resolve(SOURCE_DIR, "js", "index.jsx");
 var BUILD_DIR = path.resolve(__dirname, "build");
 
 // Dev server

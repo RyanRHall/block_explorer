@@ -3,7 +3,7 @@ import React from "react";
 import { bindAll } from "lodash";
 import { withRouter } from "react-router-dom";
 // app files
-import { withWeb3Access } from "@src/context/web3";
+import { withWeb3Access } from "@src/js/context/web3";
 
 class Search extends React.Component {
 
@@ -37,7 +37,6 @@ class Search extends React.Component {
     }).catch(error => {
       // couldn't find transaction, look for address
       return this.props.web3.eth.getBalance(this.state.value).then(balance => {
-        debugger
         this.props.history.push(`/accounts/${this.state.value}`);
       })
     }).catch(error => {

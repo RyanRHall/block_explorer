@@ -1,7 +1,7 @@
 // libraries
 import React from "react";
 // app files
-import { withWeb3Access } from "@src/context/web3";
+import { withWeb3Access } from "@src/js/context/web3";
 
 class GasPrice extends React.Component {
 

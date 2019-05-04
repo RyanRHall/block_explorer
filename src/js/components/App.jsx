@@ -11,7 +11,7 @@ import BlockList from "./BlockList";
 import Search from "./Search";
 import Transaction from "./Transaction";
 import Account from "./Account";
-import { withWeb3Access } from "@src/context/web3";
+import { withWeb3Access } from "@src/js/context/web3";
 
 class App extends React.Component {
 

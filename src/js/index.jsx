@@ -5,7 +5,7 @@ import Web3 from "web3";
 import { BrowserRouter as Router } from 'react-router-dom';
 // app files
 import App from "./components/App";
-import { Web3Context } from "@src/context/web3";
+import { Web3Context } from "@src/js/context/web3";
 
 // setup web3 websocket
 const ENDPOINT = "wss://mainnet.infura.io/ws";
