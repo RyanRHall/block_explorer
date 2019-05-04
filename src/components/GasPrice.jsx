@@ -21,7 +21,7 @@ class GasPrice extends React.Component {
   }
 
   async componentDidUpdate(prevProps) {
-    if(prevProps.block.number !== this.props.block.number) {
+    if(prevProps.latestBlock.number !== this.props.latestBlock.number) {
       this._fetchGasPrice();
     }
   }

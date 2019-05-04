@@ -11,9 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "@aragon/ui": "^0.37.0",
+    "lodash": "^4.17.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
     "react-websocket": "^2.0.1",
     "styled-components": "^4.2.0",
     "web3": "^1.0.0-beta.54"

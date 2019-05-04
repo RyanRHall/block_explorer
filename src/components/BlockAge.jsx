@@ -14,8 +14,12 @@ class BlockHeight extends React.Component {
 
   /************ Lifecycle Methods ************/
 
+  componentDidMount() {
+    this._startTicker();
+  }
+
   async componentDidUpdate(prevProps) {
-    if(prevProps.block.number !== this.props.block.number) {
+    if(prevProps.latestBlock.number !== this.props.latestBlock.number) {
       this._stopTicker();
       await this.setState({ age: 0 });
       this._startTicker();

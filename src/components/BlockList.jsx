@@ -1,43 +1,27 @@
 // libraries
 import React from "react";
 // app files
-import { withWeb3Access } from "@src/context/web3";
+import { range } from "lodash";
+import BlockListItem from "./BlockListItem";
 
 class BlockList extends React.Component {
 
-  /*************** Constructor ***************/
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      startingNumber: null,
-      blocks: []
-    }
-  }
-
-  /************ Lifecycle Methods ************/
-
-  componentDidMount() {
-    this._fetchBlocks();
-  }
-
-  /************* Private Methods *************/
-
-  async _fetchBlocks() {
-    const batch = new this.props.web3.BatchRequest();
-    batch.add(this.props.web3.eth.getBlock.request(105));
-    batch.add(this.props.web3.eth.getBlock.request(106));
-    batch.execute().then(data => {
-
-      debugger
-    });
-  }
-
   /***************** Render ******************/
 
+  _renderBlockListItems() {
+    const start = this.props.latestBlock.number;
+    return range(start, start - 4, -1).map(blockNumer => (
+      <BlockListItem blockNumber={blockNumer} key={blockNumer} />
+    ))
+  }
+
   render() {
-    return("yo")
+    return(
+      <div>
+        {this._renderBlockListItems()}
+      </div>
+    )
   }
 }
 
-export default withWeb3Access(BlockList);
+export default BlockList;

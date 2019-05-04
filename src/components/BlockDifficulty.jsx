@@ -3,7 +3,7 @@ import React from "react";
 
 const BlockDifficulty = props => (
   <div>
-    {props.block.difficulty}
+    {props.latestBlock.difficulty}
   </div>
 );
 

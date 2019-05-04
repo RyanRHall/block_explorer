@@ -2,8 +2,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Web3 from "web3";
+import { BrowserRouter as Router } from 'react-router-dom';
 // app files
-import { Main } from "@aragon/ui";
 import App from "./components/App";
 import { Web3Context } from "@src/context/web3";
 
@@ -11,14 +11,17 @@ import { Web3Context } from "@src/context/web3";
 const ENDPOINT = "wss://mainnet.infura.io/ws";
 const web3 = new Web3(new Web3.providers.WebsocketProvider(ENDPOINT));
 
+// wrap app
+const WrappedApp = (
+  <Web3Context.Provider value={web3}>
+    <Router>
+      <App />
+    </Router>
+  </Web3Context.Provider>
+);
+
 // render app when dom loaded
 document.addEventListener("DOMContentLoaded", () => {
-  ReactDOM.render(
-    <Web3Context.Provider value={web3}>
-      <Main>
-        <App />
-      </Main>
-    </Web3Context.Provider>,
-    document.getElementById("app")
-  );
+  const container = document.getElementById("app");
+  ReactDOM.render(WrappedApp, container);
 });
