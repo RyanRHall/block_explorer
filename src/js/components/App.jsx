@@ -1,7 +1,6 @@
 // libraries
 import React from "react";
 import { Route, Switch } from 'react-router-dom';
-import { Main } from "@aragon/ui";
 import { bindAll } from "lodash";
 // app files
 import BlockAge from "./BlockAge";
@@ -100,10 +99,10 @@ class App extends React.Component {
 
   _renderApp() {
     return (
-      <Main>
+      <div>
         {this._renderHeader()}
         {this._renderMain()}
-      </Main>
+      </div>
     );
   }
 

@@ -1,3 +1,3 @@
-export const hashShortner = hash => (
-  hash.slice(0,10) + "..." + hash.slice(-4)
+export const hexShortner = hash => (
+  hash.slice(0,8) + "..."
 )

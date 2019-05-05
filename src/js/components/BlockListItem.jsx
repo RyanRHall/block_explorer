@@ -3,9 +3,7 @@ import React from "react";
 // app files
 import { withWeb3Access } from "@src/js/context/web3";
 import { BlockLink, TransactionLink } from "@src/js/helpers/links";
-import { hashShortner } from "@src/js/helpers/viewHelpers";
-// styles
-require("@src/styles/block_list_item");
+import { hexShortner } from "@src/js/helpers/viewHelpers";
 
 class BlockListItem extends React.Component {
 
@@ -14,7 +12,7 @@ class BlockListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
+      isLoaded: false,
       block: {
         transactions: []
       }
@@ -27,22 +25,27 @@ class BlockListItem extends React.Component {
     this._fetchBlockData();
   }
 
+  componentWillUnmount() {
+    // this.props.blockRemoved();
+  }
+
   /************* Private Methods *************/
 
   async _fetchBlockData() {
     const block = await this.props.web3.eth.getBlock(this.props.blockNumber);
     if(!block) return;// TODO
-    this.setState({
-      isLoading: false,
+    await this.setState({
+      isLoaded: true,
       block
     });
+    // this.props.blockLoaded(this.props.blockNumber);
   }
 
   /***************** Render ******************/
 
   _renderTransactions() {
     return this.state.block.transactions.map(tx => (
-      <TransactionLink key={tx} hash={tx}>
+      <TransactionLink key={tx} hash={tx} >
         <div className="transaction-link-icon" />
       </TransactionLink>
     ));
@@ -50,7 +53,7 @@ class BlockListItem extends React.Component {
 
   _renderLoading() {
     return(
-      <div></div>
+      <div className="block-list-item"></div>
     );
   }
 
@@ -58,10 +61,10 @@ class BlockListItem extends React.Component {
     const block = this.state.block;
     return (
       <div className="block-list-item">
-        <div>Number:</div>       <div><BlockLink number={block.number}/></div>
-        <div>Hash:</div>         <div><BlockLink number={block.number}>{hashShortner(block.hash)}</BlockLink></div>
-        <div>Nonce:</div>        <div>{block.nonce}</div>
-        <div>Transactions:</div> <div>{block.transactions.length}</div>
+        <div><BlockLink number={block.number}/></div>
+        <div>Hash:</div>    <div><BlockLink number={block.number}>{hexShortner(block.hash)}</BlockLink></div>
+        <div>Nonce:</div>   <div>{hexShortner(block.nonce)}</div>
+        <div>Txs:</div>     <div>{block.transactions.length}</div>
 
         <div>{this._renderTransactions()}</div>
       </div>
@@ -69,7 +72,7 @@ class BlockListItem extends React.Component {
   }
 
   render() {
-    return this.state.isLoading ? this._renderLoading() : this._renderLoaded();
+    return this.state.isLoaded ? this._renderLoaded() : this._renderLoading();
   }
 }
 

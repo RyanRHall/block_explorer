@@ -7,9 +7,9 @@ export const BlockLink = props => (
 )
 
 export const TransactionLink = props => (
-  <Link to={`/transactions${props.hash}`}>{props.children || props.hash}</Link>
+  <Link to={`/transactions/${props.hash}`}>{props.children || props.hash}</Link>
 )
 
 export const AccountLink = props => (
-  <Link to={`/accounts${props.address}`}>{props.children || props.address}</Link>
+  <Link to={`/accounts/${props.address}`}>{props.children || props.address}</Link>
 )

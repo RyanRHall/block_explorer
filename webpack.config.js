@@ -1,16 +1,23 @@
 var path = require("path");
 var HTMLWebpackPlugin = require("html-webpack-plugin");
+var webpack = require("webpack");
 
 var SOURCE_DIR = path.resolve(__dirname, "src");
 var TEMPLATE = path.resolve(SOURCE_DIR, "index.html");
 var ENTRYPOINT = path.resolve(SOURCE_DIR, "js", "index.jsx");
 var BUILD_DIR = path.resolve(__dirname, "build");
 
-// Dev server
+// HTML Injector plugin
 var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
   template: TEMPLATE,
   filename: "index.html",
   inject: "head"
+});
+
+// ENV plugin
+var ENVPlugin = new webpack.EnvironmentPlugin({
+  NODE_ENV: "development",
+  SECRET: false
 });
 
 module.exports = {
@@ -42,9 +49,9 @@ module.exports = {
   output: {
     filename: "bundle.js",
     path: BUILD_DIR,
-    publicPath: '/'
+    publicPath: "/"
   },
-  plugins: [ HTMLWebpackPluginConfig ],
+  plugins: [ HTMLWebpackPluginConfig, ENVPlugin ],
   devtool: "source-map",
   devServer: {
     port: 8080,

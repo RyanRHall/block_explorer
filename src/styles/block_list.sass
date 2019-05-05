@@ -1,34 +1,38 @@
-#block-list-container
-  display: flex
-  justify-content: space-between
-  flex-wrap: wrap
+@import shared
 
+#block-list-container
+  margin: 0 auto
 
 .block-list-item
-  border: 2px solid black
-  border-radius: 15px
+  @extend %information-pane
   display: grid
   grid-template-columns: auto auto
-  grid-template-rows: 10% 10% 10% 10% auto
-  margin: 0 10px
-  width: 400px
-  min-height: 70vh
-  padding: 10px
+  grid-template-rows: 15% 10% 10% 10% auto
+  margin-bottom: 20px
+  height: 50vh
+  width: 300px
 
-  // &:last-of-type
-  //   margin-right: 0
+  /* block number row */
+  div:first-of-type
+    font-size: 1.7em
+    grid-column: span 2
+    text-align: center
 
   /* transations row */
   div:last-of-type
     align-content: flex-start
     display: flex
-    flex-wrap: wrap
     grid-column: span 2
+    flex-wrap: wrap
+    overflow: auto
+
+    a
+      display: block
+      margin: 3px
 
     /* transaction icon link */
     .transaction-link-icon
       background-color: black
-      border-radius: 15px
-      height: 30px
-      margin: 5px
-      width: 30px
+      border-radius: 7px
+      height: 14px
+      width: 14px
