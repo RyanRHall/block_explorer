@@ -13,9 +13,7 @@ class BlockListItem extends React.Component {
     super(props);
     this.state = {
       isLoaded: false,
-      block: {
-        transactions: []
-      }
+      block: {}
     }
   }
 
@@ -23,10 +21,6 @@ class BlockListItem extends React.Component {
 
   componentDidMount() {
     this._fetchBlockData();
-  }
-
-  componentWillUnmount() {
-    // this.props.blockRemoved();
   }
 
   /************* Private Methods *************/
@@ -38,7 +32,6 @@ class BlockListItem extends React.Component {
       isLoaded: true,
       block
     });
-    // this.props.blockLoaded(this.props.blockNumber);
   }
 
   /***************** Render ******************/

@@ -2,6 +2,9 @@
 import React from "react";
 // app files
 import { withWeb3Access } from "@src/js/context/web3";
+import { BlockLink, AccountLink } from "@src/js/helpers/links";
+// styles
+require("@src/styles/details-container");
 
 class Transaction extends React.Component {
 
@@ -10,7 +13,7 @@ class Transaction extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
+      isLoaded: false,
       transaction: {}
     }
   }
@@ -27,43 +30,36 @@ class Transaction extends React.Component {
     const txHash = this.props.match.params.txHash;
     const transaction = await this.props.web3.eth.getTransaction(txHash);
     this.setState({
-      isLoading: false,
+      isLoaded: true,
       transaction
     });
   }
 
   /***************** Render ******************/
 
-  _renderLoading() {
-    return(
-      <div></div>
-    );
-  }
-
   _renderLoaded() {
-    const tx = this.state.transaction;
+    const { hash, blockNumber, from, to, value } = this.state.transaction;
     return(
       <div>
         <h1>Transaction Details</h1>
-        <div className="transaction-details-container">
+        <div className="details-container">
           <div>Hash:</div>
-          <div>{tx.hash}</div>
+          <div>{hash}</div>
           <div>Block Number:</div>
-          <div>{tx.blockNumber}</div>
+          <div><BlockLink number={blockNumber} /></div>
           <div>From:</div>
-          <div>{tx.from}</div>
+          <div><AccountLink address={from} /></div>
           <div>To:</div>
-          <div>{tx.to}</div>
+          <div><AccountLink address={to} /></div>
           <div>Amount:</div>
-          <div>{tx.value} Wei</div>
+          <div>{value} Wei</div>
         </div>
       </div>
-
     );
   }
 
   render() {
-    return this.state.isLoading ? this._renderLoading() : this._renderLoaded();
+    return this.state.isLoaded ? this._renderLoaded() : null;
   }
 }
 

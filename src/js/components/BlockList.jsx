@@ -2,7 +2,7 @@
 import React from "react";
 import Masonry from "react-masonry-component";
 // app files
-import { range } from "lodash";
+import { range, max } from "lodash";
 import BlockListItem from "./BlockListItem";
 import masonryConfig from "@src/js/config/masonryConfig"
 // styles
@@ -18,10 +18,15 @@ class BlockList extends React.Component {
     return parseInt(this.props.match.params.blockNumber) || this.props.latestBlock.number;
   }
 
+  _blockNumbers() {
+    const endBlock = max([ this._startBlock() - NUM_BLOCKS, -1 ]);
+    return range(this._startBlock(), endBlock, -1);
+  }
+
   /***************** Render ******************/
 
   _renderBlockListItems() {
-    return range(this._startBlock(), this._startBlock() - NUM_BLOCKS, -1).map(blockNumber => (
+    return this._blockNumbers().map(blockNumber => (
       <BlockListItem key={blockNumber} blockNumber={blockNumber} />
     ));
   }
