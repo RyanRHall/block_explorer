@@ -1,5 +1,7 @@
 // libraries
 import React from "react";
+// styles
+require("@src/styles/block_age");
 
 class BlockHeight extends React.Component {
 
@@ -44,9 +46,19 @@ class BlockHeight extends React.Component {
 
   /***************** Render ******************/
 
+  _renderClassName() {
+    if (this.state.age < 12) {
+      return "time-green";
+    } else if (this.state.age < 18) {
+      return "time-yellow";
+    } else {
+      return "time-red";
+    }
+  }
+
   render() {
     return(
-      <div className="metric-container">
+      <div className={`metric-container ${this._renderClassName()}`}>
           <span>Block Age:</span>
           <span>{`${this.state.age} s`}</span>
       </div>
