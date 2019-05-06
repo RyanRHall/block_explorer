@@ -2,7 +2,6 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import { FaUndoAlt, FaHome } from 'react-icons/fa';
-// styles
 
 class NavButtons extends React.Component {
 

@@ -9,11 +9,8 @@ import App from "./components/App";
 import { Web3Context } from "@src/js/context/web3";
 
 // setup web3 websocket
-// const ENDPOINT = "wss://mainnet.infura.io/ws";
-const ENDPOINT = `wss://mainnet.infura.io/ws/v3/${process.env.SECRET}`;
-
+const ENDPOINT = "wss://mainnet.infura.io/ws";
 const web3 = new Web3(new Web3.providers.WebsocketProvider(ENDPOINT));
-// <IconContext.Provider value={{ color: "blue", className: "global-class-name" }}>
 
 // wrap app
 const WrappedApp = (

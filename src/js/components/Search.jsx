@@ -56,12 +56,6 @@ class Search extends React.Component {
 
   /***************** Render ******************/
 
-  _renderLinks() {
-    <div>
-      <Link to="/"><FaHome /></Link>
-    </div>
-  }
-
   render() {
     return(
       <div id="search-container">

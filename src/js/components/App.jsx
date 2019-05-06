@@ -24,7 +24,7 @@ class App extends React.Component {
     bindAll(this, [ "_fetchLatestBlock", "_renderBlockList" ])
     this.state = {
       latestBlock: null,
-      loading: true
+      isLoaded: false
     }
   }
 
@@ -45,7 +45,7 @@ class App extends React.Component {
     const lastestBlock = await this.props.web3.eth.getBlock("latest");
     this.setState({
       latestBlock: lastestBlock,
-      loading: false
+      isLoaded: true
     });
   }
 
@@ -59,12 +59,6 @@ class App extends React.Component {
   }
 
   /***************** Render ******************/
-
-  _renderLoading() {
-    return (
-      <div></div>
-    );
-  }
 
   _renderBlockList(props) {
     return <BlockList {...props} latestBlock={this.state.latestBlock} />
@@ -96,7 +90,7 @@ class App extends React.Component {
     );
   }
 
-  _renderApp() {
+  _renderLoaded() {
     return (
       <div>
         {this._renderHeader()}
@@ -106,7 +100,7 @@ class App extends React.Component {
   }
 
   render() {
-    return this.state.loading ? this._renderLoading() : this._renderApp();
+    return this.state.isLoaded ? this._renderLoaded() : null;
   }
 }
 
