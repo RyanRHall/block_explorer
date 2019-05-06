@@ -9,8 +9,22 @@
   grid-template-columns: auto auto
   grid-template-rows: 15% 10% 10% 10% auto
   margin-bottom: 15px
-  height: 50vh
+  height: 500px
   width: 300px
+
+  @media #{$medium}
+    height: 400px
+    width: 300px
+
+  @media #{$small}
+    height: 300px
+    width: 400px
+
+  @media #{$tiny}
+    height: 300px
+    width: 300px
+
+
 
   /* block number row */
   div:first-of-type

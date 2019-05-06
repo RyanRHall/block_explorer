@@ -1,8 +1,8 @@
 // libraries
+import { range, max } from "lodash";
 import React from "react";
 import Masonry from "react-masonry-component";
 // app files
-import { range, max } from "lodash";
 import BlockListItem from "./BlockListItem";
 import masonryConfig from "@src/js/config/masonryConfig"
 // styles

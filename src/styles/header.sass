@@ -6,10 +6,18 @@ header
 
   /* search bar & metrics */
   & > div
-    flex: 1
+    flex: 4
+    margin: 0 50px 30px 50px
+
+    @media #{$medium}
+      margin: 0 30px 30px 30px
+
+    @media #{$small}
+      margin: 0 10px 15px 10px
 
   /* metrics */
   & > div:nth-of-type(2)
+    flex: 3
     display: flex
     justify-content: space-between
 

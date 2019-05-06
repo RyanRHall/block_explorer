@@ -1,9 +1,11 @@
 // libraries
-import React from "react";
 import { bindAll } from "lodash";
+import React from "react";
 import { withRouter } from "react-router-dom";
 // app files
 import { withWeb3Access } from "@src/js/context/web3";
+// styles
+require("@src/styles/search");
 
 class Search extends React.Component {
 
@@ -17,8 +19,6 @@ class Search extends React.Component {
     };
   }
 
-  /************ Lifecycle Methods ************/
-
   /************* Private Methods *************/
 
   _handleChange(event) {
@@ -26,6 +26,7 @@ class Search extends React.Component {
   }
 
   _handleSubmit() {
+    if(!this.state.value) return;
     // look for block
     this.props.web3.eth.getBlock(this.state.value).then(block => {
       this.props.history.push(`/blocks/${block.number}`);
@@ -50,7 +51,11 @@ class Search extends React.Component {
   render() {
     return(
       <div id="search-container">
-        <input value={this.state.value} onChange={this._handleChange} />
+        <input
+          value={this.state.value}
+          onChange={this._handleChange}
+          placeholder="Block #, Transaction Hash, Address..."
+        />
         <button onClick={this._handleSubmit}>Search</button>
       </div>
     );
