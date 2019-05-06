@@ -15,11 +15,13 @@
 ## Screenshots
 
 #### New Block Added
-<img src="./docs/animated_blocks.gif" alt="Animated Blocks" width="400"/>
+<img src="./docs/animated_blocks.gif" alt="Animated Blocks" width="600"/>
+
 #### Dynamic Search
-<img src="./docs/dynamic_search.gif" alt="Dynamic Search" width="400"/>
+<img src="./docs/dynamic_search.gif" alt="Dynamic Search" width="600"/>
+
 #### Infinite Scroll
-<img src="./docs/infinite_scroll.gif" alt="Infinite Scroll" width="400"/>
+<img src="./docs/infinite_scroll.gif" alt="Infinite Scroll" width="600"/>
 
 ## Installation:
 
