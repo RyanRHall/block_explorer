@@ -25,7 +25,6 @@
     width: 300px
 
 
-
   /* block number row */
   div:first-of-type
     font-size: 1.7em
@@ -44,9 +43,16 @@
       display: block
       margin: 3px
 
+      &:hover
+        margin: 0
+        .transaction-link-icon
+          border-radius: 10px
+          height: 20px
+          width: 20px
+
     /* transaction icon link */
     .transaction-link-icon
-      background-color: black
+      background-color: $purple
       border-radius: 7px
       height: 14px
       width: 14px
