@@ -52,7 +52,10 @@ class Search extends React.Component {
     }).catch(error => {
       // couldn't find anything
       alert(`Couldn't find anything matching ${this.state.value}`);
-    })
+    }).then(() => {
+      // reset search
+      this.setState({ value: "" })
+    });
   }
 
   /***************** Render ******************/
