@@ -15,8 +15,20 @@ header
     @media #{$small}
       margin: 0 10px 15px 10px
 
+  #nav-button-container
+    > *
+      color: black
+      cursor: pointer
+      margin-right: 10px
+      &:hover
+        *
+          color: #AAAAAA
+
+    display: flex
+    text-decoration: none
+
   /* metrics */
-  & > div:nth-of-type(2)
+  & > div:last-of-type
     flex: 3
     display: flex
     justify-content: space-between

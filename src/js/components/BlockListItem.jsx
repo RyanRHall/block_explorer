@@ -26,16 +26,17 @@ class BlockListItem extends React.Component {
   /************* Private Methods *************/
 
   async _fetchBlockData() {
-    // TODO
-    let block = await this.props.web3.eth.getBlock(this.props.blockNumber);
-    if(!block) {
-      // try again
-      let block = await this.props.web3.eth.getBlock(this.props.blockNumber);
+    let block;
+    // might have to try several times to fetch block
+    while(!block) {
+      block = await this.props.web3.eth.getBlock(this.props.blockNumber);
+      if(block) {
+        return this.setState({
+          isLoaded: true,
+          block
+        });
+      }
     }
-    await this.setState({
-      isLoaded: true,
-      block
-    });
   }
 
   /***************** Render ******************/

@@ -1,8 +1,10 @@
 // libraries
 import { bindAll } from "lodash";
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
+import { FaSearch, FaUndoAlt, FaHome } from 'react-icons/fa';
 // app files
+import NavButtons from "./NavButtons";
 import { withWeb3Access } from "@src/js/context/web3";
 // styles
 require("@src/styles/search");
@@ -54,15 +56,25 @@ class Search extends React.Component {
 
   /***************** Render ******************/
 
+  _renderLinks() {
+    <div>
+      <Link to="/"><FaHome /></Link>
+    </div>
+  }
+
   render() {
     return(
       <div id="search-container">
-        <input
-          value={this.state.value}
-          onChange={this._handleChange}
-          onKeyDown={this._handleKeyDown}
-          placeholder="Block #, Transaction Hash, Address..."
-        />
+        <NavButtons/>
+        <div>
+          <input
+            value={this.state.value}
+            onChange={this._handleChange}
+            onKeyDown={this._handleKeyDown}
+            placeholder="Block #, Transaction Hash, Address..."
+          />
+          <FaSearch />
+        </div>
         <button onClick={this._handleSubmit}>Search</button>
       </div>
     );

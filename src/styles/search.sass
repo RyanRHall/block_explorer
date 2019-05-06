@@ -4,13 +4,27 @@
   align-items: center
   display: flex
 
-  input
-    height: 40px
+  div:nth-of-type(2)
     flex-grow: 1
-    font-size: 1em
-    min-width: 300px
+    position: relative
+    min-width: 450px
+    @media #{$medium}
+      min-width: 400px
     @media #{$tiny}
-      min-width: 290px
+      min-width: 220px
+
+    input
+      height: 40px
+      font-size: 1em
+      width: 100%
+
+    .icon
+      position: absolute
+      right: 3px
+      top: 0
+      bottom: 0
+      margin: auto 0
+      color: #AAAAAA
 
   button
     height: 46px
