@@ -66,7 +66,7 @@ class BlockList extends React.Component {
   render() {
     return(
       <div>
-        <h1>Block Explorer</h1>
+        <h1>Ethereum Block Explorer</h1>
         <Masonry options={masonryConfig} id="block-list-container" onLayoutComplete={this._handleLoaded} >
           {this._renderBlockListItems()}
         </Masonry>
