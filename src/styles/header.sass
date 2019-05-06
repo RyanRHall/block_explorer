@@ -1,15 +1,25 @@
+@import shared
+
 header
   display: flex
   flex-wrap: wrap
 
   /* search bar & metrics */
-  div
+  & > div
     flex: 1
 
-  /* metrics container */
-  div:nth-of-type(2)
+  /* metrics */
+  & > div:nth-of-type(2)
     display: flex
+    justify-content: space-between
 
-    div
-      flex: 1
-      min-width: 200px
+.metric-container
+  @extend %information-pane
+  align-items: center
+  display: inline-flex
+  flex-direction: column
+  margin-right: 15px
+  white-space: nowrap
+
+  &:last-of-type
+    margin-right: 0

@@ -3,7 +3,8 @@ import React from "react";
 
 const BlockDifficulty = props => (
   <div className="metric-container">
-    {props.latestBlock.difficulty}
+      <span>Block Difficulty:</span>
+      <span>{props.latestBlock.difficulty}</span>
   </div>
 );
 

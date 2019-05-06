@@ -38,7 +38,8 @@ class GasPrice extends React.Component {
   render() {
     return(
       <div className="metric-container">
-        {`Gas Price: ${this.state.gasPrice} Wei`}
+          <span>Gas Price:</span>
+          <span>{`${this.state.gasPrice} Wei`}</span>
       </div>
     )
   }
