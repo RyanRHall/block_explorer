@@ -26,8 +26,10 @@ class BlockList extends React.Component {
   /************ Lifecycle Methods ************/
 
   static getDerivedStateFromProps(props, state) {
-    const startBlock = parseInt(props.match.params.blockNumber) || props.latestBlock.number;
-    const numBlocks = startBlock === state.startBlock ? state.numBlocks : 20
+    const routeParamBlockNumber = parseInt(props.match.params.blockNumber);
+    const startBlock = routeParamBlockNumber || props.latestBlock.number;
+    // reset length to 20 blocks if navigating to new block
+    const numBlocks = routeParamBlockNumber === state.startBlock ? 20 : state.numBlocks;
     return { startBlock, numBlocks }
   }
 

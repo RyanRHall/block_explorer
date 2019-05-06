@@ -9,7 +9,8 @@ import App from "./components/App";
 import { Web3Context } from "@src/js/context/web3";
 
 // setup web3 websocket
-const ENDPOINT = "wss://mainnet.infura.io/ws";
+const ENDPOINT = `wss://mainnet.infura.io/ws/v3/${process.env.API_KEY}`;
+console.log(process.env.NODE_ENV);
 const web3 = new Web3(new Web3.providers.WebsocketProvider(ENDPOINT));
 
 // wrap app

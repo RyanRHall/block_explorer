@@ -1,13 +1,14 @@
 var path = require("path");
 var HTMLWebpackPlugin = require("html-webpack-plugin");
-var webpack = require("webpack");
+const Dotenv = require('dotenv-webpack');
 
 var SOURCE_DIR = path.resolve(__dirname, "src");
 var TEMPLATE = path.resolve(SOURCE_DIR, "index.html");
 var ENTRYPOINT = path.resolve(SOURCE_DIR, "js", "index.jsx");
 var BUILD_DIR = path.resolve(__dirname, "build");
 
-var mode = process.env["NODE_ENV"] || "development";
+// Default mode to development
+process.env["NODE_ENV"] = process.env["NODE_ENV"] || "development";
 
 // HTML Injector plugin
 var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
@@ -17,14 +18,11 @@ var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
 });
 
 // ENV plugin
-var ENVPlugin = new webpack.EnvironmentPlugin({
-  NODE_ENV: "development",
-  SECRET: false
-});
+var ENVPlugin = new Dotenv()
 
 module.exports = {
   entry: ["@babel/polyfill", ENTRYPOINT],
-  mode: mode,
+  mode: process.env["NODE_ENV"],
   resolve: {
     extensions: [".js", ".jsx", ".css", ".scss", ".sass"],
     alias: {
@@ -55,7 +53,7 @@ module.exports = {
     publicPath: "/"
   },
   plugins: [ HTMLWebpackPluginConfig, ENVPlugin ],
-  devtool: mode === "development" ? "source-map" : "",
+  devtool: process.env["NODE_ENV"] === "development" ? "source-map" : false,
   devServer: {
     port: 8080,
     historyApiFallback: true,
