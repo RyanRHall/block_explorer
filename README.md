@@ -1,6 +1,6 @@
 # An Ethereum Block Explorer
 
-<a href="http://block-explorer.ryanrhall.com" target="\_blank">View Live</a>
+<a href="http://block-explorer.ryanrhall.com" target="_blank">View Live</a>
 
 ## Built using:
   * Web3
