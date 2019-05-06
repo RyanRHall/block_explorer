@@ -13,13 +13,19 @@ class Search extends React.Component {
 
   constructor(props) {
     super(props);
-    bindAll(this, [ "_handleChange", "_handleSubmit" ])
+    bindAll(this, [ "_handleChange", "_handleSubmit", "_handleKeyDown" ])
     this.state = {
       value: ""
     };
   }
 
   /************* Private Methods *************/
+
+  _handleKeyDown(event) {
+    if (event.key === "Enter") {
+      return this._handleSubmit();
+    }
+  }
 
   _handleChange(event) {
     this.setState({ value: event.currentTarget.value });
@@ -54,6 +60,7 @@ class Search extends React.Component {
         <input
           value={this.state.value}
           onChange={this._handleChange}
+          onKeyDown={this._handleKeyDown}
           placeholder="Block #, Transaction Hash, Address..."
         />
         <button onClick={this._handleSubmit}>Search</button>

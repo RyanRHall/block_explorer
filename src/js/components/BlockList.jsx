@@ -1,5 +1,5 @@
 // libraries
-import { range, max } from "lodash";
+import { range, max, bindAll } from "lodash";
 import React from "react";
 import Masonry from "react-masonry-component";
 // app files
@@ -8,19 +8,51 @@ import masonryConfig from "@src/js/config/masonryConfig"
 // styles
 require("@src/styles/block_list");
 
-const NUM_BLOCKS = 20
+
 
 class BlockList extends React.Component {
 
-  /************* Private Methods *************/
+  /*************** Constructor ***************/
 
-  _startBlock() {
-    return parseInt(this.props.match.params.blockNumber) || this.props.latestBlock.number;
+  constructor(props) {
+    super(props)
+    bindAll(this, [ "_handleScroll" ])
+    this.state = {
+      startBlock: null,
+      numBlocks: 20
+    }
   }
 
+  /************ Lifecycle Methods ************/
+
+  static getDerivedStateFromProps(props, state) {
+    const startBlock = parseInt(props.match.params.blockNumber) || props.latestBlock.number;
+    const numBlocks = startBlock === state.startBlock ? state.numBlocks : 20
+    return { startBlock, numBlocks }
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this._handleScroll)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this._handleScroll)
+  }
+
+  /************* Private Methods *************/
+
   _blockNumbers() {
-    const endBlock = max([ this._startBlock() - NUM_BLOCKS, -1 ]);
-    return range(this._startBlock(), endBlock, -1);
+    const endBlock = max([ this.state.startBlock - this.state.numBlocks, -1 ]);
+    return range(this.state.startBlock, endBlock, -1);
+  }
+
+  _handleScroll(event) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      this.setState({
+        isLoading: true,
+        numBlocks: this.state.numBlocks + 20
+      })
+    }
   }
 
   /***************** Render ******************/
