@@ -45,8 +45,9 @@ class Search extends React.Component {
       })
     }).catch(error => {
       // couldn't find transaction, look for address
-      return this.props.web3.eth.getBalance(this.state.value).then(balance => {
-        this.props.history.push(`/accounts/${this.state.value}`);
+      const checkSum = this.props.web3.utils.toChecksumAddress(this.state.value);
+      return this.props.web3.eth.getBalance(checkSum).then(balance => {
+        this.props.history.push(`/accounts/${checkSum}`);
       })
     }).catch(error => {
       // couldn't find anything

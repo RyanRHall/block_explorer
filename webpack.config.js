@@ -7,6 +7,8 @@ var TEMPLATE = path.resolve(SOURCE_DIR, "index.html");
 var ENTRYPOINT = path.resolve(SOURCE_DIR, "js", "index.jsx");
 var BUILD_DIR = path.resolve(__dirname, "build");
 
+var mode = process.env["NODE_ENV"] || "development";
+
 // HTML Injector plugin
 var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
   template: TEMPLATE,
@@ -22,6 +24,7 @@ var ENVPlugin = new webpack.EnvironmentPlugin({
 
 module.exports = {
   entry: ["@babel/polyfill", ENTRYPOINT],
+  mode: mode,
   resolve: {
     extensions: [".js", ".jsx", ".css", ".scss", ".sass"],
     alias: {
@@ -52,7 +55,7 @@ module.exports = {
     publicPath: "/"
   },
   plugins: [ HTMLWebpackPluginConfig, ENVPlugin ],
-  devtool: "source-map",
+  devtool: mode === "development" ? "source-map" : "",
   devServer: {
     port: 8080,
     historyApiFallback: true,

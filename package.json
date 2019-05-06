@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "NODE_ENV=production npx webpack",
+    "dev-server": "NODE_ENV=development npx webpack-dev-server",
+    "server": "npx http-server ./build"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +29,7 @@
     "babel-plugin-styled-components": "^1.10.0",
     "css-loader": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
+    "http-server": "^0.11.1",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
