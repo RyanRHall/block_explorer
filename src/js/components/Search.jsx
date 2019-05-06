@@ -66,10 +66,11 @@ class Search extends React.Component {
         <NavButtons/>
         <div>
           <input
-            value={this.state.value}
+            className="mono"
             onChange={this._handleChange}
             onKeyDown={this._handleKeyDown}
-            placeholder="Block #, Transaction Hash, Address..."
+            placeholder="Block #, Tx Hash, Address..."
+            value={this.state.value}
           />
           <FaSearch />
         </div>

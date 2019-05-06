@@ -59,9 +59,9 @@ class BlockListItem extends React.Component {
     const block = this.state.block;
     return (
       <div className="block-list-item">
-        <div><BlockLink number={block.number}/></div>
-        <div>Hash:</div>    <div><BlockLink number={block.number}>{hexShortner(block.hash)}</BlockLink></div>
-        <div>Nonce:</div>   <div>{hexShortner(block.nonce)}</div>
+        <div className="mono"><BlockLink number={block.number}/></div>
+        <div>Hash:</div>    <div className="mono">{hexShortner(block.hash)}</div>
+        <div>Nonce:</div>   <div className="mono">{hexShortner(block.nonce)}</div>
         <div>Txs:</div>     <div>{block.transactions.length}</div>
 
         <div>{this._renderTransactions()}</div>

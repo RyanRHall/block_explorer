@@ -32,6 +32,6 @@
 git clone https://github.com/RyanRHall/block_explorer.git & cd block_explorer
 # install dependencies
 npm install
-# build and start development server
+# build and start development server (this will take a few seconds to start!)
 npm run server
 ```

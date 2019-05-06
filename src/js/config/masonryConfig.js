@@ -1,5 +1,5 @@
 export default {
-  gutter: 15,
+  gutter: 40,
   stagger: 15,
   horizontalOrder: true,
   resize: true,

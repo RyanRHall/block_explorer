@@ -44,13 +44,13 @@ class Transaction extends React.Component {
         <h1>Transaction Details</h1>
         <div className="details-container">
           <div>Hash:</div>
-          <div>{hash}</div>
+          <div className="mono">{hash}</div>
           <div>Block Number:</div>
-          <div><BlockLink number={blockNumber} /></div>
+          <div className="mono"><BlockLink number={blockNumber} /></div>
           <div>From:</div>
-          <div><AccountLink address={from} /></div>
+          <div className="mono"><AccountLink address={from} /></div>
           <div>To:</div>
-          <div><AccountLink address={to} /></div>
+          <div className="mono"><AccountLink address={to} /></div>
           <div>Amount:</div>
           <div>{value} Wei</div>
         </div>

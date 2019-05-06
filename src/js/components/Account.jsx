@@ -43,7 +43,7 @@ class Account extends React.Component {
         <h1>Account Details</h1>
         <div className="details-container">
           <div>Address:</div>
-          <div>{address}</div>
+          <div className="mono">{address}</div>
           <div>Balance:</div>
           <div>{balance} Wei</div>
         </div>
