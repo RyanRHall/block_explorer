@@ -19,7 +19,8 @@ class BlockList extends React.Component {
     bindAll(this, [ "_handleScroll" ])
     this.state = {
       startBlock: null,
-      numBlocks: 20
+      numBlocks: 20,
+      loadable: true
     }
   }
 
@@ -28,9 +29,15 @@ class BlockList extends React.Component {
   static getDerivedStateFromProps(props, state) {
     const routeParamBlockNumber = parseInt(props.match.params.blockNumber);
     const startBlock = routeParamBlockNumber || props.latestBlock.number;
-    // reset length to 20 blocks if navigating to new block
-    const numBlocks = routeParamBlockNumber === state.startBlock ? 20 : state.numBlocks;
-    return { startBlock, numBlocks }
+    // reset length to 20 blocks and scroll to top if navigating to new block
+    let numBlocks = state.numBlocks;
+    let loadable = true;
+    if(routeParamBlockNumber && startBlock !== state.startBlock) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      numBlocks = 20;
+      loadable = false;
+    }
+    return { startBlock, numBlocks, loadable }
   }
 
   componentDidMount() {
@@ -49,9 +56,10 @@ class BlockList extends React.Component {
   }
 
   _handleScroll(event) {
+    if(!this.state.loadable) return;
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.setState({
-        isLoading: true,
+        loadable: false,
         numBlocks: this.state.numBlocks + 20
       })
     }
