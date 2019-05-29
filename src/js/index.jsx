@@ -16,7 +16,7 @@ const web3 = new Web3(new Web3.providers.WebsocketProvider(ENDPOINT));
 // wrap app
 const WrappedApp = (
   <Web3Context.Provider value={web3}>
-    <IconContext.Provider value={{ className: "icon", size: "1.5em" }}>
+    <IconContext.Provider value={{ className: "icon", size: "1.5em", attr: { preserveAspectRatio: "xMidYMax meet" } }}>
       <Router>
         <App />
       </Router>
